@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piano de Blocos</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/blockly@11/blockly_compressed.js"></script>
+<script src="https://unpkg.com/blockly@11/blocks_compressed.js"></script>
+<script src="https://unpkg.com/blockly@11/msg/pt-br.js"></script>
+</head>
+<body>
+<header>
+  <a class="tab active" href="index.html">🎹 Piano</a>
+  <a class="tab" href="robo.html">🤖 Robô</a>
+  <a class="tab" href="exemplos.html">📚 Exemplos</a>
+  <span class="spacer"></span>
+  <button id="btnSave">💾 Salvar</button>
+  <button id="btnLoad">📂 Abrir</button>
+  <button id="btnClear">🗑 Limpar</button>
+  <button id="btnHelp">❓ Desafio</button>
+  <input type="file" id="fileInput" accept=".json" hidden>
+</header>
+<main>
+  <div id="blocklyDiv"></div>
+  <aside>
+    <div id="stageWrap">
+      <div class="runbar">
+        <button id="btnGo" class="bigbtn go">🚩 Tocar</button>
+        <button id="btnStop" class="bigbtn stop" title="Parar">⏹ Parar</button>
+        <button id="btnFs" class="bigbtn fsbtn" title="Tela cheia">⛶</button>
+        <button id="btnExitFs" class="bigbtn back">✖ Voltar aos blocos</button>
+      </div>
+      <div id="piano"></div>
+      <div id="status">Clique em 🚩 Tocar e aperte as teclas que você programou!</div>
+      <label class="autofs"><input type="checkbox" id="autoFs" checked> Abrir em tela cheia ao tocar</label>
+    </div>
+    <div id="help">
+      <h3>🎯 Desafio: monte um PIANO!</h3>
+      <ol>
+        <li>Pegue o bloco amarelo <b>"quando a tecla A for pressionada"</b>.</li>
+        <li>Encaixe embaixo dele o bloco roxo <b>"tocar nota Dó"</b>.</li>
+        <li>Clique em <b>🚩 Tocar</b> e aperte <b>A</b> no teclado. Tocou? 🎉</li>
+        <li>Agora faça: <b>S → Ré, D → Mi, F → Fá, G → Sol, H → Lá, J → Si, K → Dó agudo</b>.</li>
+        <li>Também dá para fazer as teclas do piano na tela funcionarem com <b>"quando clicar na tecla … do piano"</b>.</li>
+      </ol>
+      <h4>⭐ Desafios extras</h4>
+      <ul>
+        <li>Troque o instrumento (flauta, xilofone, guitarra…).</li>
+        <li>Use a 🚩 para tocar "Brilha, brilha estrelinha":<br>
+          <code>Dó Dó Sol Sol Lá Lá Sol(2) · Fá Fá Mi Mi Ré Ré Dó(2)</code></li>
+        <li>Crie uma batida de bateria com <b>"repetir"</b>.</li>
+        <li>Veja ideias na aba <b>📚 Exemplos</b>.</li>
+      </ul>
+    </div>
+  </aside>
+</main>
+<script src="common.js"></script>
+<script src="examples.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

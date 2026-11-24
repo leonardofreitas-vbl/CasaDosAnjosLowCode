@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robô de Blocos</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/blockly@11/blockly_compressed.js"></script>
+<script src="https://unpkg.com/blockly@11/blocks_compressed.js"></script>
+<script src="https://unpkg.com/blockly@11/msg/pt-br.js"></script>
+</head>
+<body class="robo">
+<header>
+  <a class="tab" href="index.html">🎹 Piano</a>
+  <a class="tab active" href="robo.html">🤖 Robô</a>
+  <a class="tab" href="exemplos.html">📚 Exemplos</a>
+  <span class="spacer"></span>
+  <button id="btnSave">💾 Salvar</button>
+  <button id="btnLoad">📂 Abrir</button>
+  <button id="btnClear">🗑 Limpar</button>
+  <button id="btnHelp">❓ Desafio</button>
+  <input type="file" id="fileInput" accept=".json" hidden>
+</header>
+<main>
+  <div id="blocklyDiv"></div>
+  <aside>
+    <div id="stageWrap">
+      <div class="runbar">
+        <button id="btnGo" class="bigbtn go">🚩 Andar</button>
+        <button id="btnStop" class="bigbtn stop" title="Parar e voltar ao início">⏹ Parar</button>
+        <button id="btnFs" class="bigbtn fsbtn" title="Tela cheia">⛶</button>
+        <button id="btnExitFs" class="bigbtn back">✖ Voltar aos blocos</button>
+      </div>
+      <canvas id="stage" width="514" height="354"></canvas>
+      <div id="status">Monte os blocos e clique em 🚩 Andar!</div>
+      <label class="autofs"><input type="checkbox" id="autoFs" checked> Abrir em tela cheia ao rodar</label>
+    </div>
+    <div class="row">
+      <button id="btnNew">🔄 Novo mapa</button>
+      <label>Nível
+        <select id="level">
+          <option value="1">⭐ Fácil</option>
+          <option value="2" selected>⭐⭐ Médio</option>
+          <option value="3">⭐⭐⭐ Difícil</option>
+        </select>
+      </label>
+      <label>Velocidade
+        <select id="speed">
+          <option value="700">🐢 Lenta</option>
+          <option value="400" selected>🚶 Normal</option>
+          <option value="150">🐇 Rápida</option>
+        </select>
+      </label>
+    </div>
+    <div id="help">
+      <h3>🎯 Desafio: leve o robô até a 🏁!</h3>
+      <ol>
+        <li>O robô só pode andar no <b>caminho claro</b>. Se pisar na grama, ele bate! 💥</li>
+        <li>Use <b>"andar 1 passo(s)"</b> para ir para frente. A setinha amarela mostra para onde ele está olhando.</li>
+        <li>Use <b>"virar à direita ↻"</b> e <b>"virar à esquerda ↺"</b> nas curvas (imagine que você está dentro do robô!).</li>
+        <li>Clique em <b>🚩 Andar</b> para testar. Errou? Clique em <b>⏹ Parar</b>, arrume os blocos e tente de novo.</li>
+      </ol>
+      <h4>⭐ Desafios extras</h4>
+      <ul>
+        <li>Pegue todas as ⭐ no caminho antes de chegar.</li>
+        <li>Cuidado com os caminhos sem saída!</li>
+        <li>Use <b>"repetir"</b> para usar <b>menos blocos</b>.</li>
+        <li>Veja desafios prontos na aba <b>📚 Exemplos</b>.</li>
+      </ul>
+    </div>
+  </aside>
+</main>
+<script src="common.js"></script>
+<script src="examples.js"></script>
+<script src="robo.js"></script>
+</body>
+</html>

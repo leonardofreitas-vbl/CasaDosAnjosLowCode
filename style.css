@@ -1,0 +1,117 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; font-family: "Segoe UI", Arial, sans-serif; }
+body { display: flex; flex-direction: column; }
+
+/* ---------- Cabeçalho e abas ---------- */
+header {
+  background: #855cd6; color: #fff; padding: 8px 12px 0;
+  display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap;
+}
+header button {
+  border: none; border-radius: 8px; padding: 8px 14px; font-size: 16px; font-weight: 600;
+  cursor: pointer; background: #fff; color: #333; margin-bottom: 8px;
+}
+header button:hover { filter: brightness(0.92); }
+.tab {
+  color: #fff; text-decoration: none; font-weight: bold; font-size: 19px;
+  padding: 10px 20px; border-radius: 12px 12px 0 0; background: rgba(255,255,255,.18);
+}
+.tab.active { background: #fff; color: #855cd6; }
+.tab:hover:not(.active) { background: rgba(255,255,255,.32); }
+.spacer { flex: 1; }
+
+main { flex: 1; display: flex; min-height: 0; }
+#blocklyDiv { flex: 1; min-width: 0; }
+aside {
+  width: 430px; padding: 12px; background: #f3f0fb; overflow-y: auto;
+  border-left: 2px solid #ddd; display: flex; flex-direction: column; gap: 10px;
+}
+body.robo aside { width: 520px; }
+
+/* ---------- Categorias dos blocos (maiores) ---------- */
+#blocklyDiv .blocklyToolboxDiv { background: #fff; padding: 8px 4px; border-right: 2px solid #e5e0f5; }
+#blocklyDiv .blocklyTreeRow {
+  height: auto; line-height: 1.2; padding: 14px 16px 14px 10px; margin: 6px 6px;
+  border-radius: 10px; border-left-width: 12px !important;
+  background: color-mix(in srgb, var(--cat, #ccc) 22%, white);
+}
+#blocklyDiv .blocklyTreeLabel { font: bold 18px "Segoe UI", Arial, sans-serif; color: #333; }
+#blocklyDiv .blocklyTreeSelected .blocklyTreeLabel { color: #fff; }
+
+/* ---------- Área de rodar ---------- */
+#stageWrap { display: flex; flex-direction: column; gap: 10px; }
+.runbar { display: flex; gap: 10px; align-items: stretch; }
+.bigbtn {
+  border: none; border-radius: 12px; font-size: 22px; font-weight: bold; color: #fff;
+  padding: 12px 18px; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,.25);
+}
+.bigbtn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,.25); }
+.bigbtn.go { background: #43a047; flex: 1; font-size: 26px; }
+.bigbtn.stop { background: #e53935; }
+.bigbtn.fsbtn { background: #855cd6; }
+.bigbtn.back { background: #855cd6; display: none; }
+#status {
+  padding: 10px 12px; background: #fff; border-radius: 10px; font-size: 18px; font-weight: 600;
+  min-height: 46px; border: 2px solid #e5e0f5;
+}
+.autofs { font-size: 14px; color: #555; cursor: pointer; }
+
+/* ---------- Tela cheia ---------- */
+body.fs #stageWrap {
+  position: fixed; inset: 0; z-index: 1000; background: #2b2141;
+  align-items: center; justify-content: center; padding: 20px; gap: 18px;
+}
+body.fs .runbar, body.fs #status { width: min(96vw, 1100px); }
+body.fs #status { font-size: 30px; text-align: center; }
+body.fs .bigbtn { font-size: 28px; padding: 14px 26px; }
+body.fs .bigbtn.back { display: block; }
+body.fs .bigbtn.fsbtn, body.fs .autofs { display: none; }
+
+/* ---------- Piano ---------- */
+#piano { position: relative; width: 100%; height: 190px; user-select: none; }
+body.fs #piano { width: min(96vw, 1400px); height: 60vh; }
+.key {
+  position: absolute; top: 0; border: 1px solid #333; border-radius: 0 0 6px 6px;
+  cursor: pointer; display: flex; align-items: flex-end; justify-content: center;
+  font-size: 11px; padding-bottom: 4px; transition: background .05s;
+}
+.key.white { background: #fff; height: 100%; z-index: 1; color: #555; }
+.key.black { background: #222; height: 62%; z-index: 2; color: #ccc; font-size: 9px; }
+body.fs .key.white { font-size: 24px; padding-bottom: 14px; }
+body.fs .key.black { font-size: 15px; padding-bottom: 10px; }
+.key.white.on { background: #ffd54f; }
+.key.black.on { background: #ff9800; }
+
+/* ---------- Robô ---------- */
+#stage {
+  display: block; width: 100%; height: auto; aspect-ratio: 514 / 354;
+  border-radius: 10px; border: 4px solid #f2c94c; background: #7cc576;
+}
+body.fs #stage { width: min(96vw, calc((100vh - 230px) * 514 / 354)); }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+.row button, .row select {
+  padding: 6px 10px; font-size: 15px; border-radius: 8px; border: 1px solid #aaa; cursor: pointer; background: #fff;
+}
+
+/* ---------- Ajuda ---------- */
+#help { background: #fff; border-radius: 10px; padding: 4px 14px; font-size: 15px; }
+#help.hidden { display: none; }
+#help code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+
+/* ---------- Exemplos ---------- */
+.exwrap { flex: 1; overflow-y: auto; padding: 16px 30px 40px; background: #f3f0fb; }
+.exwrap h2 { color: #855cd6; font-size: 26px; margin: 18px 0 12px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; }
+.card {
+  background: #fff; border-radius: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.card .emo { font-size: 42px; line-height: 1; }
+.card h3 { margin: 0; font-size: 20px; }
+.card p { margin: 0; color: #555; flex: 1; font-size: 15px; }
+.card .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.card button {
+  border: none; border-radius: 10px; padding: 10px 14px; font-size: 16px; font-weight: bold;
+  cursor: pointer; color: #fff; background: #855cd6; box-shadow: 0 3px 0 rgba(0,0,0,.2);
+}
+.card button.alt { background: #4C97FF; }

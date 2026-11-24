@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exemplos — Piano e Robô</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="tab" href="index.html">🎹 Piano</a>
+  <a class="tab" href="robo.html">🤖 Robô</a>
+  <a class="tab active" href="exemplos.html">📚 Exemplos</a>
+  <span class="spacer"></span>
+</header>
+<div class="exwrap">
+  <h2>🎹 Exemplos de Piano</h2>
+  <div id="pianoCards" class="cards"></div>
+  <h2>🤖 Desafios de Robô</h2>
+  <div id="roboCards" class="cards"></div>
+</div>
+<script src="examples.js"></script>
+<script>
+const pDiv = document.getElementById("pianoCards");
+for (const [id, ex] of Object.entries(PIANO_EXAMPLES)) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<div class="emo">${ex.emoji}</div><h3>${ex.title}</h3><p>${ex.desc}</p>
+    <div class="btns"><button>▶ Abrir no Piano</button></div>`;
+  card.querySelector("button").onclick = () => location.href = "index.html?exemplo=" + id;
+  pDiv.appendChild(card);
+}
+
+const rDiv = document.getElementById("roboCards");
+for (const [id, ex] of Object.entries(ROBO_EXAMPLES)) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<div class="emo">${ex.emoji}</div><h3>${ex.title}</h3><p>${ex.desc}</p>
+    <div class="btns"><button>🎯 Tentar sozinho</button><button class="alt">👀 Ver resposta</button></div>`;
+  const [tryBtn, solBtn] = card.querySelectorAll("button");
+  tryBtn.onclick = () => location.href = "robo.html?exemplo=" + id + "&resposta=0";
+  solBtn.onclick = () => location.href = "robo.html?exemplo=" + id;
+  rDiv.appendChild(card);
+}
+</script>
+</body>
+</html>
